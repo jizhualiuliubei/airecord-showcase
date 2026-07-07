@@ -1,0 +1,28 @@
+# 源码文件 — 保护私有代码
+*.kt
+*.java
+*.kts
+!build.gradle.kts
+
+# Gradle 构建文件
+.gradle/
+build/
+app/build/
+local.properties
+*.jks
+*.keystore
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# Android
+*.apk
+!assets/app-release-v0.1.2.apk
+*.aab
+
+# 临时文件
+*.log
+*.tmp
+.cache/

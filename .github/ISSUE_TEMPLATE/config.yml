@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 关于本项目
+    url: https://github.com/jizhualiuliubei/airecord-showcase#readme
+    about: 本仓库为作品展示仓库，不接受代码 Issue。如需联系作者请通过其他方式。

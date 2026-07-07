@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>架构设计 — 小猪鸭记账</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          coral: { 50:'#FFF5F5',100:'#FFD6DE',300:'#FF6B9D',500:'#E63E6D' },
+          orange: { 300:'#FFA751' },
+          cream: '#FFF8F0',
+          warm: { 900:'#2A2522',800:'#3A3230',600:'#6B6560',400:'#B0A598' }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+  * { font-family: 'Noto Sans SC', system-ui, sans-serif; }
+  .text-gradient { background: linear-gradient(135deg, #FF6B9D, #FFA751); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .glass { backdrop-filter: blur(20px); background: rgba(255,255,255,0.6); }
+  .code-block { background: #2A2522; color: #FFD6DE; border-radius: 12px; padding: 16px; overflow-x: auto; font-size: 13px; line-height: 1.6; }
+  .code-block .kw { color: #FFA751; }
+  .code-block .str { color: #96E6A1; }
+  .code-block .cmt { color: #B0A598; }
+  .code-block .fn { color: #7EC8E3; }
+</style>
+</head>
+<body class="bg-cream text-warm-900">
+
+<nav class="sticky top-0 z-50 glass border-b border-coral-100/50">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+    <a href="index.html" class="text-xl font-bold text-gradient">🐷🦆 小猪鸭记账</a>
+    <div class="hidden md:flex gap-6 text-sm font-medium text-warm-600">
+      <a href="index.html" class="hover:text-coral-300">首页</a>
+      <a href="architecture.html" class="text-coral-300 font-bold">架构</a>
+      <a href="screenshots.html" class="hover:text-coral-300">截图</a>
+      <a href="tech.html" class="hover:text-coral-300">技术</a>
+      <a href="usage-guide.html" class="hover:text-coral-300">使用说明</a>
+    </div>
+  </div>
+</nav>
+
+<section class="max-w-4xl mx-auto px-6 py-12">
+  <h1 class="text-4xl font-black mb-2">🏗 架构设计</h1>
+  <p class="text-warm-600 mb-10">MVVM + Clean Architecture 三层分层 — 严格单向数据流</p>
+
+  <!-- Overview -->
+  <div class="space-y-4 mb-12">
+    <div class="bg-white rounded-2xl p-6 border border-coral-50">
+      <h3 class="font-bold text-lg mb-2">🎨 Presentation 层</h3>
+      <p class="text-sm text-warm-600 mb-3">Compose UI + ViewModel + StateFlow | ~30 个文件 | 15 个 Screen · 10 个 ViewModel</p>
+      <div class="flex gap-2 flex-wrap">
+        <span class="px-2 py-1 bg-coral-50 text-coral-300 rounded-lg text-xs">Jetpack Compose</span>
+        <span class="px-2 py-1 bg-coral-50 text-coral-300 rounded-lg text-xs">Material 3</span>
+        <span class="px-2 py-1 bg-coral-50 text-coral-300 rounded-lg text-xs">Navigation Compose</span>
+        <span class="px-2 py-1 bg-coral-50 text-coral-300 rounded-lg text-xs">StateFlow</span>
+        <span class="px-2 py-1 bg-coral-50 text-coral-300 rounded-lg text-xs">collectAsState</span>
+        <span class="px-2 py-1 bg-coral-50 text-coral-300 rounded-lg text-xs">Animation System</span>
+      </div>
+    </div>
+    <div class="flex justify-center text-2xl">↕ 单向数据流 ↕</div>
+    <div class="bg-white rounded-2xl p-6 border border-orange-50">
+      <h3 class="font-bold text-lg mb-2">🧠 Domain 层</h3>
+      <p class="text-sm text-warm-600 mb-3">UseCase + Repository Interface + Domain Model | ~15 个文件 | 纯 Kotlin · 零框架依赖</p>
+      <div class="flex gap-2 flex-wrap">
+        <span class="px-2 py-1 bg-orange-50 text-orange-300 rounded-lg text-xs">11 个 UseCase</span>
+        <span class="px-2 py-1 bg-orange-50 text-orange-300 rounded-lg text-xs">3 个 Repository 接口</span>
+        <span class="px-2 py-1 bg-orange-50 text-orange-300 rounded-lg text-xs">4 个 Domain Model</span>
+        <span class="px-2 py-1 bg-orange-50 text-orange-300 rounded-lg text-xs">纯 Kotlin</span>
+      </div>
+    </div>
+    <div class="flex justify-center text-2xl">↕ 依赖倒置 ↕</div>
+    <div class="bg-white rounded-2xl p-6 border border-green-50">
+      <h3 class="font-bold text-lg mb-2">💾 Data 层</h3>
+      <p class="text-sm text-warm-600 mb-3">Room DAO + Retrofit API + Repository Impl | ~20 个文件 | 4 张表 · 20+ 查询 · 1 个 API Service</p>
+      <div class="flex gap-2 flex-wrap">
+        <span class="px-2 py-1 bg-green-50 text-green-600 rounded-lg text-xs">Room ORM</span>
+        <span class="px-2 py-1 bg-green-50 text-green-600 rounded-lg text-xs">Retrofit</span>
+        <span class="px-2 py-1 bg-green-50 text-green-600 rounded-lg text-xs">OkHttp</span>
+        <span class="px-2 py-1 bg-green-50 text-green-600 rounded-lg text-xs">TypeConverter</span>
+        <span class="px-2 py-1 bg-green-50 text-green-600 rounded-lg text-xs">PrepopulateData</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Flow -->
+  <h2 class="text-2xl font-black mb-4 mt-12">数据流</h2>
+  <div class="bg-white rounded-2xl p-6 mb-8">
+    <div class="code-block text-sm leading-relaxed">
+      Database Change<br>
+      &nbsp;&nbsp;→ Room 自动通知 Flow<br>
+      &nbsp;&nbsp;→ DAO 发射新数据<br>
+      &nbsp;&nbsp;→ Repository 映射为 Domain Model (Entity → Domain)<br>
+      &nbsp;&nbsp;→ ViewModel StateFlow 更新<br>
+      &nbsp;&nbsp;→ Compose collectAsState() 感知变化<br>
+      &nbsp;&nbsp;→ UI 自动重组
+    </div>
+    <p class="text-xs text-warm-600 mt-3">整个过程<span class="text-coral-300 font-bold">全自动响应式</span>，无需手动刷新。数据变化时 UI 自动更新。</p>
+  </div>
+
+  <!-- State Management -->
+  <h2 class="text-2xl font-black mb-4 mt-12">状态管理模式</h2>
+  <div class="bg-white rounded-2xl p-6 mb-6">
+    <div class="code-block"><pre>@HiltViewModel
+class BillViewModel @Inject constructor(
+    private val repository: TransactionRepository
+) : ViewModel() {
+    <span class="cmt">// 内部可变状态</span>
+    private val _uiState = MutableStateFlow(BillUiState())
+    <span class="cmt">// 对外只读</span>
+    val uiState: StateFlow&lt;BillUiState&gt; = _uiState.asStateFlow()
+
+    <span class="cmt">// 响应式数据管道：UI状态变化 → 自动重新查询</span>
+    val dayGroups: StateFlow&lt;List&lt;DayGroup&gt;&gt; = _uiState
+        .flatMapLatest { state -> repository.getFiltered(...) }
+        .stateIn(viewModelScope, WhileSubscribed(5000), emptyList())
+}</pre></div>
+  </div>
+
+  <!-- Key Decisions -->
+  <h2 class="text-2xl font-black mb-4 mt-12">关键设计决策</h2>
+  <div class="space-y-4">
+    <div class="bg-white rounded-2xl p-6">
+      <h3 class="font-bold mb-2">日期归一化</h3>
+      <p class="text-sm text-warm-600">所有交易日期存储前归一化到当天零点。因为 SQLite <code class="bg-coral-50 px-1 rounded">GROUP BY date</code> 按时间戳分组，同时刻不同时间的记录会被分到不同组。归一化确保同一天正确聚合。</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6">
+      <h3 class="font-bold mb-2">Flow 响应式查询</h3>
+      <p class="text-sm text-warm-600">DAO 返回 <code class="bg-coral-50 px-1 rounded">Flow&lt;List&lt;T&gt;&gt;</code> 而非一次性 List。数据库变化时自动通知 ViewModel → UI 重组。整个链路无需手动刷新。</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6">
+      <h3 class="font-bold mb-2">Entity → Domain 映射</h3>
+      <p class="text-sm text-warm-600">Repository 负责 Entity ↔ Domain Model 转换。Domain 层不依赖 Room 注解，保持纯 Kotlin。</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6">
+      <h3 class="font-bold mb-2">原子状态更新</h3>
+      <p class="text-sm text-warm-600">使用 <code class="bg-coral-50 px-1 rounded">_uiState.update { it.copy(...) }</code> 而非 <code class="bg-coral-50 px-1 rounded">_uiState.value =</code>。原子操作防止并发消息丢失——24 处全量修改。</p>
+    </div>
+  </div>
+
+  <!-- DI -->
+  <h2 class="text-2xl font-black mb-4 mt-12">依赖注入架构</h2>
+  <div class="bg-white rounded-2xl p-6 space-y-3 font-mono text-sm mb-8">
+    <div class="flex gap-3"><span class="text-coral-300 font-bold">AppModule</span> <span class="text-warm-600">→ AppDatabase · TransactionDao · CategoryDao · BudgetDao · ThemePreferences</span></div>
+    <div class="flex gap-3"><span class="text-orange-300 font-bold">NetworkModule</span> <span class="text-warm-600">→ OkHttpClient · Retrofit · DeepSeekApiService · Json</span></div>
+    <div class="flex gap-3"><span class="text-green-600 font-bold">RepositoryModule</span> <span class="text-warm-600">→ TransactionRepository · CategoryRepository · BudgetRepository (@Binds)</span></div>
+  </div>
+
+  <!-- Thread Safety & Patterns -->
+  <h2 class="text-2xl font-black mb-4 mt-12">工程质量保障</h2>
+  <div class="grid md:grid-cols-2 gap-4 mb-8">
+    <div class="bg-white rounded-2xl p-6">
+      <div class="text-xl mb-2">🧵</div>
+      <h3 class="font-bold mb-2">线程安全</h3>
+      <ul class="text-sm text-warm-600 space-y-1">
+        <li>· SimpleDateFormat 每次创建新实例（非线程安全类不共享）</li>
+        <li>· Room DAO suspend 函数自动后台线程</li>
+        <li>· Bitmap 解码使用 Dispatchers.IO + 缩放后回收原图</li>
+        <li>· 网络请求 withContext(Dispatchers.IO) 包裹</li>
+      </ul>
+    </div>
+    <div class="bg-white rounded-2xl p-6">
+      <div class="text-xl mb-2">📅</div>
+      <h3 class="font-bold mb-2">日期归一化</h3>
+      <ul class="text-sm text-warm-600 space-y-1">
+        <li>· 所有 date 存储时归一化到当天 00:00:00.000</li>
+        <li>· SQLite GROUP BY date 同天正确聚合</li>
+        <li>· 导出时用 createdAt（精确时间戳）保证时间精度</li>
+      </ul>
+    </div>
+    <div class="bg-white rounded-2xl p-6">
+      <div class="text-xl mb-2">🔄</div>
+      <h3 class="font-bold mb-2">Entity ↔ Domain 映射</h3>
+      <ul class="text-sm text-warm-600 space-y-1">
+        <li>· Repository 层负责 Entity → Domain Model 转换</li>
+        <li>· Domain 层不依赖 Room 注解，纯 Kotlin</li>
+        <li>· LEFT JOIN 查询用 TransactionWithCategory 承载分类信息</li>
+      </ul>
+    </div>
+    <div class="bg-white rounded-2xl p-6">
+      <div class="text-xl mb-2">🛡️</div>
+      <h3 class="font-bold mb-2">安全与混淆</h3>
+      <ul class="text-sm text-warm-600 space-y-1">
+        <li>· Release 启用 ProGuard 混淆 + 资源压缩</li>
+        <li>· DTO/Retrofit/序列化完整 keep 规则</li>
+        <li>· API Key 不硬编码，用户自行配置</li>
+        <li>· HTTP 日志仅 DEBUG 模式输出</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center mt-6">
+    <p class="text-sm text-warm-400">详情见 README.md 技术亮点部分</p>
+  </div>
+</section>
+
+<footer class="text-center py-10 text-sm text-warm-400">
+  <p>🐷🦆 小猪鸭记账 — 作品展示</p>
+</footer>
+</body>
+</html>

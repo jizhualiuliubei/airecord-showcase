@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术亮点 — 小猪鸭记账</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          coral: { 50:'#FFF5F5',100:'#FFD6DE',300:'#FF6B9D',500:'#E63E6D' },
+          orange: { 300:'#FFA751' },
+          cream: '#FFF8F0',
+          warm: { 900:'#2A2522',800:'#3A3230',600:'#6B6560',400:'#B0A598' }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+  * { font-family: 'Noto Sans SC', system-ui, sans-serif; }
+  .text-gradient { background: linear-gradient(135deg, #FF6B9D, #FFA751); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .glass { backdrop-filter: blur(20px); background: rgba(255,255,255,0.6); }
+  .code-block { background: #2A2522; color: #FFD6DE; border-radius: 12px; padding: 16px; overflow-x: auto; font-size: 13px; line-height: 1.6; font-family: 'JetBrains Mono',Consolas,monospace; }
+</style>
+</head>
+<body class="bg-cream text-warm-900">
+
+<nav class="sticky top-0 z-50 glass border-b border-coral-100/50">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+    <a href="index.html" class="text-xl font-bold text-gradient">🐷🦆 小猪鸭记账</a>
+    <div class="hidden md:flex gap-6 text-sm font-medium text-warm-600">
+      <a href="index.html" class="hover:text-coral-300">首页</a>
+      <a href="architecture.html" class="hover:text-coral-300">架构</a>
+      <a href="screenshots.html" class="hover:text-coral-300">截图</a>
+      <a href="tech.html" class="text-coral-300 font-bold">技术</a>
+      <a href="usage-guide.html" class="hover:text-coral-300">使用说明</a>
+    </div>
+  </div>
+</nav>
+
+<section class="max-w-4xl mx-auto px-6 py-12">
+  <h1 class="text-4xl font-black mb-2">🔥 技术亮点</h1>
+  <p class="text-warm-600 mb-10">6 大核心技术成就深度解析</p>
+
+  <!-- 1: AI NL -->
+  <div class="bg-white rounded-2xl p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="w-10 h-10 rounded-xl bg-coral-100 flex items-center justify-center text-xl">🤖</span>
+      <div><h2 class="text-xl font-black">1. AI 自然语言记账系统</h2><p class="text-xs text-warm-600">Prompt 工程 · 多条目解析 · 5级分类匹配 · 对话纠错</p></div>
+    </div>
+    <div class="space-y-3 text-sm text-warm-600">
+      <p>构建了 <strong>140 行 System Prompt</strong>，包含完整的上下文工程：</p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>分类列表动态注入（所有可用分类名）</li>
+        <li>日期参考上下文（今天/昨天/前天/本周一的精确日期）</li>
+        <li>8 条日期推断规则（"刚刚/中午/昨晚/上周X/X天前"等）</li>
+        <li>6 条金额推断规则（"两千/十几块/一百来块"等口语化金额）</li>
+        <li>12 条分类推断规则（"吃饭外卖奶茶→餐饮，滴滴地铁→交通"等关键词映射）</li>
+        <li>10 个多样化示例覆盖单笔/多笔/收入/转账/口语化场景</li>
+      </ul>
+      <div class="code-block">用户："午饭20，打车10，给妈妈转500红包"
+→ AI 解析为 3 条结构化记录
+→ 自动分类：餐饮/交通/人情
+→ 用户确认 → 3 条同时入库</div>
+
+      <h4 class="font-bold mt-4">5 级分类匹配策略</h4>
+      <div class="bg-coral-50 rounded-xl p-3 font-mono text-xs overflow-x-auto">
+1. 精确匹配: AI返回"餐饮" = 本地"餐饮" ✓<br>
+2. 包含匹配: 分类名包含输入（如本地"餐饮消费"包含AI返回的"餐饮"）<br>
+3. 被包含匹配: 输入包含分类名（AI返回"交通费用"，本地有"交通"）<br>
+4. 归一化匹配: 去除"费/花/销/开/支/用"后缀后比较，如"交通费"→"交通"<br>
+5. 兜底: 匹配到"其他"分类
+      </div>
+
+      <h4 class="font-bold mt-4">对话式纠错</h4>
+      <p>检测 9 种纠错关键词（不对/错了/改成/应该是/不是/换成/修改/分类/金额），自动触发纠错模式：AI 保留之前解析结果的未提及字段，只修改用户指定的字段。纠错 Prompt 包含上一次的完整解析结果作为上下文。</p>
+
+      <h4 class="font-bold mt-4">DeepSeek API 双模型 Fallback</h4>
+      <div class="code-block">主模型: deepseek-v4-flash (temperature=0.1, 快速记账)
+备用模型: deepseek-chat (temperature=0.1, v4-flash失败时自动切换)</div>
+    </div>
+  </div>
+
+  <!-- 2: Multi-modal -->
+  <div class="bg-white rounded-2xl p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-xl">📡</span>
+      <div><h2 class="text-xl font-black">2. 多模态输入统一管线</h2><p class="text-xs text-warm-600">文字 · 拍照OCR · 语音 → 统一 AI 解析</p></div>
+    </div>
+    <div class="space-y-3 text-sm text-warm-600">
+      <div class="code-block">📝 文字 → ParseTransactionUseCase.invoke(text, categories)
+📷 拍照 → ML Kit OCR → 提取文字 → ParseTransactionUseCase.parseFromImage(bitmap, categories)
+🎤 语音 → SpeechRecognizer → 文字 → ParseTransactionUseCase.invoke(spokenText, categories)</div>
+      <p><strong>ML Kit OCR</strong>：使用 ChineseTextRecognizerOptions 中文模型，图片压缩至 1024px，后台线程解码。</p>
+      <p><strong>语音识别</strong>：SpeechRecognizer 直接 API（非系统对话框），自定义语音 UI（扩散光环 + 20条声波柱），友好错误提示。</p>
+    </div>
+  </div>
+
+  <!-- 3: Canvas -->
+  <div class="bg-white rounded-2xl p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center text-xl">📈</span>
+      <div><h2 class="text-xl font-black">3. 自绘 Canvas 图表系统</h2><p class="text-xs text-warm-600">零第三方依赖 · Catmull-Rom 平滑曲线 · 触摸交互</p></div>
+    </div>
+    <div class="space-y-3 text-sm text-warm-600">
+      <p><strong>折线图（多数据点）</strong>：</p>
+      <div class="code-block text-xs leading-relaxed">// Catmull-Rom 平滑曲线，控制点 Y 钳制避免过度摆动
+val cp1y = (p1.y + (p2.y - p0.y) / 6f).coerceIn(minY, maxY)
+val cp2y = (p2.y - (p3.y - p1.y) / 6f).coerceIn(minY, maxY)
+path.cubicTo(p1.x + (p2.x - p0.x) / 6f, cp1y,
+             p2.x - (p3.x - p1.x) / 6f, cp2y, p2.x, p2.y)
+// 渐变填充 + 虚线网格 + 数据点圆点 + 点击 Tooltip</div>
+      <p><strong>柱状图（单数据点—日视图）</strong>：双柱对比（支出珊瑚渐变 + 收入绿色渐变），柱顶数字标签，点击弹性缩放 1.08x</p>
+      <p><strong>X 轴自适应</strong>：entries ≤ 12 全显，>12 ≤ 20 隔一显，>20 隔二显。网格线和文字使用 Material 主题色值</p>
+      <p><strong>交互</strong>：`detectTapGestures` 检测点击 → 高亮数据点 → 显示详情 Panel（日期+支出+收入）</p>
+    </div>
+  </div>
+
+  <!-- 4: Design Tokens -->
+  <div class="bg-white rounded-2xl p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-xl">🎨</span>
+      <div><h2 class="text-xl font-black">4. 设计 Token 系统</h2><p class="text-xs text-warm-600">60+ 语义色值 · Material 3 集成 · Composable 自适应</p></div>
+    </div>
+    <div class="space-y-3 text-sm text-warm-600">
+      <h4 class="font-bold">双层色值架构</h4>
+      <div class="grid md:grid-cols-2 gap-2 text-xs mb-3">
+        <div class="bg-coral-50 rounded-xl p-3">
+          <div class="font-bold text-coral-300 mb-1">Primitive Tokens</div>
+          <div class="text-warm-600">60+ 原始色值<br>Coral50-600, Orange200-500<br>Green/Blue/Yellow/Gray 系列</div>
+        </div>
+        <div class="bg-orange-50 rounded-xl p-3">
+          <div class="font-bold text-orange-300 mb-1">Composable 封装</div>
+          <div class="text-warm-600">PigDuckAppColor 对象<br>通过 @Composable 函数提供<br>统一调用入口</div>
+        </div>
+      </div>
+      <p><strong>Material 3 ColorScheme</strong>：完整定义 30+ 属性映射，珊瑚粉主色 (#FF6B9D) + 暖橙辅色 (#FFA751) 贯穿所有组件</p>
+      <p><strong>渐变工具</strong>：primaryGradient() 返回 Coral300→Orange300，backgroundGradient/headerGradient/glassGradient 等便捷函数统一管理渐变色值</p>
+    </div>
+  </div>
+
+  <!-- 5: Offline -->
+  <div class="bg-white rounded-2xl p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-xl">📴</span>
+      <div><h2 class="text-xl font-black">5. 离线优先架构</h2><p class="text-xs text-warm-600">Flow 响应式 · NetworkMonitor 监听 · 优雅降级</p></div>
+    </div>
+    <div class="space-y-3 text-sm text-warm-600">
+      <p><strong>NetworkMonitor</strong>：基于 ConnectivityManager.NetworkCallback + callbackFlow，转为 distinctUntilChanged Flow</p>
+      <p><strong>优雅降级</strong>：手动记账/统计/账单 → 永远可用；AI 功能 → 在线激活/离线灰显 + 友好提示</p>
+    </div>
+  </div>
+
+    <div class="bg-white rounded-2xl p-6 mb-6">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-xl">🗄️</span>
+      <div><h2 class="text-xl font-black">6. 数据库设计</h2><p class="text-xs text-warm-600">4 表 · 外键 · 复合索引 · Flow 响应式查询</p></div>
+    </div>
+    <div class="space-y-3 text-sm text-warm-600">
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs">
+          <thead><tr class="bg-coral-50"><th class="p-2 text-left text-coral-300">表名</th><th class="p-2 text-left text-coral-300">说明</th><th class="p-2 text-left text-coral-300">关键字段</th><th class="p-2 text-left text-coral-300">索引</th></tr></thead>
+          <tbody class="divide-y divide-coral-50">
+            <tr><td class="p-2 font-bold">transactions</td><td class="p-2">交易记录</td><td class="p-2">amount, type, category_id(FK), note, date</td><td class="p-2">date, type, category_id, (date,type)</td></tr>
+            <tr class="bg-coral-50/30"><td class="p-2 font-bold">categories</td><td class="p-2">收支分类</td><td class="p-2">name, icon_name, color, is_income, is_default</td><td class="p-2">—</td></tr>
+            <tr><td class="p-2 font-bold">budgets</td><td class="p-2">预算管理</td><td class="p-2">amount, month, category_id(FK)</td><td class="p-2">month, category_id, (month,category_id) UNIQUE</td></tr>
+            <tr class="bg-coral-50/30"><td class="p-2 font-bold">attachments</td><td class="p-2">图片附件</td><td class="p-2">transaction_id(FK), file_path</td><td class="p-2">transaction_id</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="font-bold mt-3">核心查询</h4>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>按日聚合</strong>：<code class="bg-coral-50 px-1 rounded text-xs">strftime('%Y-%m-%d', date/1000, 'unixepoch', 'localtime')</code> 按本地时区分组</li>
+        <li><strong>按分类聚合</strong>：LEFT JOIN categories + GROUP BY category_id 用于饼图和排行</li>
+        <li><strong>多条件筛选</strong>：7 条件可选组合（分类/类型/金额区间/关键词/日期），利用 <code class="bg-coral-50 px-1 rounded text-xs">IS NULL OR</code> 模式避免拼接 SQL</li>
+        <li><strong>日期归一化</strong>：所有 date 归一化到当天零点，确保 GROUP BY 同天正确聚合</li>
+      </ul>
+      <h4 class="font-bold mt-3">预置 16 个分类</h4>
+      <p>首次创建数据库时通过 RoomDatabase.Callback().onCreate() 自动插入：11 个支出分类（餐饮/交通/购物/娱乐/居住/通讯/医疗/教育/人情/宠物/其他）+ 5 个收入分类（工资/兼职/理财/红包/其他收入）</p>
+    </div>
+  </div>
+
+  <div class="text-center mt-10">
+    <p class="text-sm text-warm-400">更多细节见 README.md 项目简介部分</p>
+  </div>
+</section>
+
+<footer class="text-center py-10 text-sm text-warm-400">
+  <p>🐷🦆 小猪鸭记账 — 作品展示</p>
+</footer>
+</body>
+</html>

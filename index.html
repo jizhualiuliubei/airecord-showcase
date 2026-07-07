@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小猪鸭记账 — 萌系智能 Android 记账应用</title>
+<meta name="description" content="小猪鸭记账 — 独立全栈开发的萌系智能记账 Android 应用。Kotlin + Jetpack Compose + Clean Architecture + DeepSeek AI。作品展示。">
+<meta property="og:title" content="小猪鸭记账 — 萌系智能 Android 记账应用">
+<meta property="og:description" content="独立全栈开发 | Kotlin + Jetpack Compose + Clean Architecture + AI">
+<meta property="og:image" content="https://jizhualiuliubei.github.io/airecord-showcase/assets/branding/banner.png">
+<meta property="og:type" content="website">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          coral: { 50:'#FFF5F5',100:'#FFD6DE',300:'#FF6B9D',500:'#E63E6D' },
+          orange: { 300:'#FFA751',500:'#FF8C00' },
+          peach: { 50:'#FFF8F0',100:'#FFDCC8' },
+          cream: '#FFF8F0',
+          warm: { 900:'#2A2522',800:'#3A3230',600:'#6B6560',400:'#B0A598' }
+        },
+        fontFamily: { mono: ['"JetBrains Mono"','Consolas','monospace'] }
+      }
+    }
+  }
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+  * { font-family: 'Noto Sans SC', system-ui, sans-serif; }
+  .gradient-hero { background: linear-gradient(135deg, #FF6B9D 0%, #FFA751 50%, #FFD700 100%); }
+  .gradient-card { background: linear-gradient(135deg, rgba(255,107,157,0.08), rgba(255,167,81,0.06)); }
+  .text-gradient { background: linear-gradient(135deg, #FF6B9D, #FFA751); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .glass { backdrop-filter: blur(20px); background: rgba(255,255,255,0.6); }
+  .shadow-glow { box-shadow: 0 0 40px rgba(255,107,157,0.15); }
+  .animate-float { animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .screenshot-scroll { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .screenshot-scroll > * { scroll-snap-align: center; }
+  ::-webkit-scrollbar { height: 6px; }
+  ::-webkit-scrollbar-thumb { background: #FFB0C4; border-radius: 999px; }
+  ::-webkit-scrollbar-track { background: #FFF5F5; }
+</style>
+</head>
+<body class="bg-cream text-warm-900">
+
+<!-- Nav -->
+<nav class="sticky top-0 z-50 glass border-b border-coral-100/50">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+    <a href="index.html" class="text-xl font-bold text-gradient">🐷🦆 小猪鸭记账</a>
+    <div class="hidden md:flex gap-6 text-sm font-medium text-warm-600">
+      <a href="architecture.html" class="hover:text-coral-300 transition">架构</a>
+      <a href="screenshots.html" class="hover:text-coral-300 transition">截图</a>
+      <a href="tech.html" class="hover:text-coral-300 transition">技术</a>
+      <a href="usage-guide.html" class="hover:text-coral-300 transition">使用说明</a>
+      <a href="https://github.com/jizhualiuliubei/airecord-showcase" class="hover:text-coral-300 transition" target="_blank">GitHub</a>
+    </div>
+    <div class="md:hidden">
+      <button id="menuBtn" class="text-warm-600 p-2" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">☰</button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 space-y-2 text-sm font-medium text-warm-600">
+    <a href="architecture.html" class="block py-1">架构</a>
+    <a href="screenshots.html" class="block py-1">截图</a>
+    <a href="tech.html" class="block py-1">技术</a>
+    <a href="usage-guide.html" class="block py-1">使用说明</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="gradient-hero text-white py-20 md:py-28 px-6 text-center relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-10 left-10 text-8xl animate-float">🐷</div>
+    <div class="absolute bottom-10 right-10 text-8xl animate-float" style="animation-delay:1s">🦆</div>
+  </div>
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="text-7xl mb-6">🐷🦆</div>
+    <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">小猪鸭记账</h1>
+    <p class="text-xl md:text-2xl opacity-90 mb-2">萌系智能记账 Android 应用</p>
+    <p class="text-sm md:text-base opacity-70 mb-8 max-w-xl mx-auto">独立全栈开发 | Kotlin + Jetpack Compose + Clean Architecture + DeepSeek AI | 从零到交付</p>
+    <div class="flex flex-wrap justify-center gap-3 text-xs font-mono opacity-80 mb-10">
+      <span class="px-3 py-1 rounded-full bg-white/20">Kotlin 1.9</span>
+      <span class="px-3 py-1 rounded-full bg-white/20">Jetpack Compose</span>
+      <span class="px-3 py-1 rounded-full bg-white/20">Clean Architecture</span>
+      <span class="px-3 py-1 rounded-full bg-white/20">Room DB</span>
+      <span class="px-3 py-1 rounded-full bg-white/20">Hilt DI</span>
+      <span class="px-3 py-1 rounded-full bg-white/20">DeepSeek AI</span>
+      <span class="px-3 py-1 rounded-full bg-white/20">ML Kit OCR</span>
+    </div>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#features" class="px-8 py-3 bg-white text-coral-300 font-bold rounded-2xl shadow-glow hover:shadow-xl transition">查看功能</a>
+      <a href="https://github.com/jizhualiuliubei/airecord-showcase/releases" class="px-8 py-3 bg-white/20 backdrop-blur text-white font-bold rounded-2xl hover:bg-white/30 transition" target="_blank">下载 APK</a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="max-w-5xl mx-auto -mt-10 px-6 relative z-20">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="bg-white rounded-2xl p-5 text-center shadow-glow">
+      <div class="text-3xl font-black text-coral-300">~75</div>
+      <div class="text-xs text-warm-600 mt-1">Kotlin 源文件</div>
+    </div>
+    <div class="bg-white rounded-2xl p-5 text-center shadow-glow">
+      <div class="text-3xl font-black text-orange-300">~9.5K</div>
+      <div class="text-xs text-warm-600 mt-1">代码行数</div>
+    </div>
+    <div class="bg-white rounded-2xl p-5 text-center shadow-glow">
+      <div class="text-3xl font-black text-green-500">15</div>
+      <div class="text-xs text-warm-600 mt-1">精美页面</div>
+    </div>
+    <div class="bg-white rounded-2xl p-5 text-center shadow-glow">
+      <div class="text-3xl font-black text-blue-400">12</div>
+      <div class="text-xs text-warm-600 mt-1">核心功能</div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="max-w-6xl mx-auto px-6 py-20">
+  <h2 class="text-3xl font-black text-center mb-4">✨ 核心功能</h2>
+  <p class="text-center text-warm-600 mb-12 max-w-lg mx-auto">覆盖手动记账、AI 智能识别、数据分析、系统集成四大场景</p>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="bg-white rounded-2xl p-5 gradient-card hover:shadow-glow transition">
+      <div class="text-3xl mb-2">📝</div>
+      <h3 class="font-bold mb-1">手动记账</h3>
+      <p class="text-sm text-warm-600">自定义数字键盘 + 分类网格 + 撒花动画</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 gradient-card hover:shadow-glow transition">
+      <div class="text-3xl mb-2">🤖</div>
+      <h3 class="font-bold mb-1">AI 对话记账</h3>
+      <p class="text-sm text-warm-600">自然语言描述收支，支持口语化 + 多条目 + 纠错</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 gradient-card hover:shadow-glow transition">
+      <div class="text-3xl mb-2">📷</div>
+      <h3 class="font-bold mb-1">拍照记账</h3>
+      <p class="text-sm text-warm-600">ML Kit OCR 识别小票 → AI 结构化解析</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 gradient-card hover:shadow-glow transition">
+      <div class="text-3xl mb-2">🎤</div>
+      <h3 class="font-bold mb-1">语音记账</h3>
+      <p class="text-sm text-warm-600">SpeechRecognizer 语音 → 声波动画 → AI 解析</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 gradient-card hover:shadow-glow transition">
+      <div class="text-3xl mb-2">📊</div>
+      <h3 class="font-bold mb-1">统计报表</h3>
+      <p class="text-sm text-warm-600">自绘 Canvas 图表 · 日/周/月/年 + 分类排行</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 gradient-card hover:shadow-glow transition">
+      <div class="text-3xl mb-2">💰</div>
+      <h3 class="font-bold mb-1">预算管理</h3>
+      <p class="text-sm text-warm-600">月度预算 + 实时进度条 + 超支提醒</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 gradient-card hover:shadow-glow transition">
+      <div class="text-3xl mb-2">📤</div>
+      <h3 class="font-bold mb-1">数据导入导出</h3>
+      <p class="text-sm text-warm-600">CSV/JSON 双格式 + 自动识别 + 分享</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 gradient-card hover:shadow-glow transition">
+      <div class="text-3xl mb-2">🧩</div>
+      <h3 class="font-bold mb-1">桌面小组件</h3>
+      <p class="text-sm text-warm-600">Jetpack Glance，桌面看本月收支</p>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section class="max-w-5xl mx-auto px-6 py-16">
+  <h2 class="text-3xl font-black text-center mb-4">🏗 架构设计</h2>
+  <p class="text-center text-warm-600 mb-10">MVVM + Clean Architecture 三层分层</p>
+  <div class="space-y-6">
+    <div class="bg-white rounded-2xl p-6 gradient-card">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="w-10 h-10 rounded-xl bg-coral-100 flex items-center justify-center text-lg">🎨</span>
+        <div><h3 class="font-bold">Presentation 层</h3><p class="text-xs text-warm-600">Compose UI + ViewModel + StateFlow | 15 个 Screen · 10 个 ViewModel</p></div>
+      </div>
+      <div class="h-1.5 bg-coral-100 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-coral-300 to-orange-300 w-full"></div></div>
+    </div>
+    <div class="flex justify-center text-warm-400 text-lg gap-2">↕ 单向数据流 ↕</div>
+    <div class="bg-white rounded-2xl p-6 gradient-card">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-lg">🧠</span>
+        <div><h3 class="font-bold">Domain 层</h3><p class="text-xs text-warm-600">UseCase + Repository Interface + Model | 11 个 UseCase · 纯 Kotlin</p></div>
+      </div>
+      <div class="h-1.5 bg-orange-100 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-orange-300 to-yellow-400 w-full"></div></div>
+    </div>
+    <div class="flex justify-center text-warm-400 text-lg gap-2">↕ 依赖倒置 ↕</div>
+    <div class="bg-white rounded-2xl p-6 gradient-card">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center text-lg">💾</span>
+        <div><h3 class="font-bold">Data 层</h3><p class="text-xs text-warm-600">Room DAO + Retrofit API + Repository Impl | 3 个 DAO · 4 张表 · 1 个 API Service</p></div>
+      </div>
+      <div class="h-1.5 bg-green-100 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-green-400 to-blue-400 w-full"></div></div>
+    </div>
+  </div>
+  <div class="text-center mt-8">
+    <a href="architecture.html" class="text-coral-300 font-bold hover:underline">查看完整架构 →</a>
+  </div>
+</section>
+
+<!-- Tech Highlights -->
+<section class="max-w-5xl mx-auto px-6 py-16">
+  <h2 class="text-3xl font-black text-center mb-4">🔥 技术亮点</h2>
+  <p class="text-center text-warm-600 mb-10">6 大核心技术成就</p>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="bg-white rounded-2xl p-6 hover:shadow-glow transition">
+      <div class="w-10 h-10 rounded-xl bg-coral-100 flex items-center justify-center text-lg mb-3">🤖</div>
+      <h3 class="font-bold mb-2">AI NL 记账系统</h3>
+      <p class="text-sm text-warm-600">140 行 Prompt 工程 · 10-shot 示例 · 5 级分类匹配 · 对话纠错 · 多条目解析</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 hover:shadow-glow transition">
+      <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-lg mb-3">📡</div>
+      <h3 class="font-bold mb-2">多模态输入管线</h3>
+      <p class="text-sm text-warm-600">文字 · ML Kit OCR 拍照 · SpeechRecognizer 语音 → 统一 AI 解析流程</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 hover:shadow-glow transition">
+      <div class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center text-lg mb-3">📈</div>
+      <h3 class="font-bold mb-2">自绘 Canvas 图表</h3>
+      <p class="text-sm text-warm-600">Catmull-Rom 平滑曲线 · 渐变填充 · 触摸交互 · 零第三方依赖</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 hover:shadow-glow transition">
+      <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-lg mb-3">🎨</div>
+      <h3 class="font-bold mb-2">设计 Token 系统</h3>
+      <p class="text-sm text-warm-600">60+ 语义色值 · Composable 自适应渐变</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 hover:shadow-glow transition">
+      <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-lg mb-3">📴</div>
+      <h3 class="font-bold mb-2">离线优先架构</h3>
+      <p class="text-sm text-warm-600">Flow 响应式查询 · NetworkMonitor 实时监听 · AI 功能优雅降级</p>
+    </div>
+  </div>
+  <div class="text-center mt-8">
+    <a href="tech.html" class="text-coral-300 font-bold hover:underline">深入了解技术细节 →</a>
+  </div>
+</section>
+
+<!-- Tech Stack -->
+<section class="max-w-5xl mx-auto px-6 py-16">
+  <h2 class="text-3xl font-black text-center mb-10">🛠 技术栈</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">☕</div><div class="font-bold text-sm">Kotlin 1.9</div><div class="text-xs text-warm-600">语言</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">🎨</div><div class="font-bold text-sm">Jetpack Compose</div><div class="text-xs text-warm-600">UI 框架</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">📐</div><div class="font-bold text-sm">Material 3</div><div class="text-xs text-warm-600">设计系统</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">🧱</div><div class="font-bold text-sm">Clean Architecture</div><div class="text-xs text-warm-600">架构模式</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">💾</div><div class="font-bold text-sm">Room 2.6</div><div class="text-xs text-warm-600">本地数据库</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">💉</div><div class="font-bold text-sm">Hilt 2.50</div><div class="text-xs text-warm-600">依赖注入</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">🧭</div><div class="font-bold text-sm">Navigation Compose</div><div class="text-xs text-warm-600">页面导航</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">🌐</div><div class="font-bold text-sm">Retrofit + OkHttp</div><div class="text-xs text-warm-600">网络层</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">🧠</div><div class="font-bold text-sm">DeepSeek API</div><div class="text-xs text-warm-600">AI 引擎</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">👁️</div><div class="font-bold text-sm">ML Kit OCR</div><div class="text-xs text-warm-600">中文识别</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">🎤</div><div class="font-bold text-sm">SpeechRecognizer</div><div class="text-xs text-warm-600">语音输入</div></div>
+    <div class="bg-white rounded-xl p-4 text-center"><div class="text-2xl mb-1">🧩</div><div class="font-bold text-sm">Glance Widget</div><div class="text-xs text-warm-600">桌面组件</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="gradient-hero text-white py-16 px-6 text-center">
+  <h2 class="text-3xl font-black mb-4">查看完整项目</h2>
+  <p class="opacity-90 mb-8 max-w-md mx-auto">深入了解架构设计、技术细节、开发历程、截图展示</p>
+  <div class="flex flex-wrap justify-center gap-4">
+    <a href="architecture.html" class="px-6 py-3 bg-white text-coral-300 font-bold rounded-2xl hover:shadow-xl transition">📐 架构文档</a>
+    <a href="screenshots.html" class="px-6 py-3 bg-white/20 backdrop-blur text-white font-bold rounded-2xl hover:bg-white/30 transition">📸 截图展示</a>
+    <a href="https://github.com/jizhualiuliubei/airecord-showcase" class="px-6 py-3 bg-white/20 backdrop-blur text-white font-bold rounded-2xl hover:bg-white/30 transition" target="_blank">⭐ GitHub</a>
+  </div>
+</section>
+
+<footer class="text-center py-10 text-sm text-warm-400">
+  <p>🐷🦆 小猪鸭记账 — 作品展示</p>
+  <p class="mt-1">Built with ❤️ using Kotlin + Jetpack Compose</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>使用说明 — 小猪鸭记账</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          coral: { 50:'#FFF5F5',100:'#FFD6DE',300:'#FF6B9D',500:'#E63E6D' },
+          orange: { 300:'#FFA751' },
+          cream: '#FFF8F0',
+          warm: { 900:'#2A2522',800:'#3A3230',600:'#6B6560',400:'#B0A598' }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+  * { font-family: 'Noto Sans SC', system-ui, sans-serif; }
+  .text-gradient { background: linear-gradient(135deg, #FF6B9D, #FFA751); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .glass { backdrop-filter: blur(20px); background: rgba(255,255,255,0.6); }
+  .gradient-hero { background: linear-gradient(135deg, #FF6B9D 0%, #FFA751 50%, #FFD700 100%); }
+  .toc-link { transition: all 0.2s ease; }
+  .toc-link:hover { background: #FFF5F5; padding-left: 16px; }
+  .step-num { display: inline-flex; align-items: center; justify-content: center; background: #FF6B9D; color: white; border-radius: 50%; min-width: 28px; height: 28px; text-align: center; font-size: 14px; font-weight: 700; margin-right: 10px; flex-shrink: 0; }
+</style>
+</head>
+<body class="bg-cream text-warm-900">
+
+<nav class="sticky top-0 z-50 glass border-b border-coral-100/50">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+    <a href="index.html" class="text-xl font-bold text-gradient">🐷🦆 小猪鸭记账</a>
+    <div class="hidden md:flex gap-6 text-sm font-medium text-warm-600">
+      <a href="index.html" class="hover:text-coral-300">首页</a>
+      <a href="architecture.html" class="hover:text-coral-300">架构</a>
+      <a href="screenshots.html" class="hover:text-coral-300">截图</a>
+      <a href="tech.html" class="hover:text-coral-300">技术</a>
+      <a href="usage-guide.html" class="text-coral-300 font-bold">使用说明</a>
+    </div>
+  </div>
+</nav>
+
+<section class="gradient-hero text-white py-16 px-6 text-center">
+  <h1 class="text-4xl font-black mb-2">📖 使用说明</h1>
+  <p class="text-lg opacity-90">详细图文教程 · 手把手教会您记账</p>
+</section>
+
+<section class="max-w-4xl mx-auto px-6 py-12">
+  <div class="grid md:grid-cols-[260px_1fr] gap-8">
+
+    <!-- Sidebar TOC -->
+    <aside class="hidden md:block">
+      <div class="sticky top-24 bg-white rounded-2xl p-5 shadow-sm">
+        <h3 class="font-bold text-sm text-coral-300 mb-3">📑 目录</h3>
+        <nav class="space-y-0.5 text-sm">
+          <a href="#s0" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">前言</a>
+          <a href="#s1" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第一步：安装APP</a>
+          <a href="#s2" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第二步：认识APP首页</a>
+          <a href="#s3" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第三步：手动记账</a>
+          <a href="#s4" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第四步：AI对话记账</a>
+          <a href="#s5" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第五步：语音记账</a>
+          <a href="#s6" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第六步：拍照记账</a>
+          <a href="#s7" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第七步：账单管理</a>
+          <a href="#s8" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第八步：统计分析</a>
+          <a href="#s9" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第九步：预算管理</a>
+          <a href="#s10" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第十步：数据管理</a>
+          <a href="#s11" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">第十一步：API密钥</a>
+          <a href="#faq" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">常见问题</a>
+          <a href="#contact" class="toc-link block py-1.5 px-3 rounded-lg text-warm-600 hover:text-coral-300">联系与支持</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <div class="space-y-12">
+
+      <!-- s0 -->
+      <div id="s0">
+        <h2 class="text-2xl font-black mb-4">📌 前言：这款APP是做什么的？</h2>
+        <p class="text-warm-600 mb-3">小猪鸭记账是一款帮助您记录日常收入和支出的手机APP。您可以用它记录每天花了多少钱、赚了多少钱，软件会自动帮您分析消费情况，让您对家庭财务一目了然。</p>
+        <p class="text-warm-600 mb-4">它和传统记账软件最大的区别是：<strong>您可以直接用说话、拍照的方式记账</strong>，不需要手动打数字。对于不太熟悉手机操作的朋友来说，非常方便。</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+          <div class="bg-white rounded-xl p-3 text-center"><span class="text-2xl">📝</span><div class="text-xs text-warm-600 mt-1">手动记账</div></div>
+          <div class="bg-white rounded-xl p-3 text-center"><span class="text-2xl">🤖</span><div class="text-xs text-warm-600 mt-1">AI对话记账</div></div>
+          <div class="bg-white rounded-xl p-3 text-center"><span class="text-2xl">🎤</span><div class="text-xs text-warm-600 mt-1">语音记账</div></div>
+          <div class="bg-white rounded-xl p-3 text-center"><span class="text-2xl">📷</span><div class="text-xs text-warm-600 mt-1">拍照记账</div></div>
+          <div class="bg-white rounded-xl p-3 text-center"><span class="text-2xl">📊</span><div class="text-xs text-warm-600 mt-1">统计分析</div></div>
+          <div class="bg-white rounded-xl p-3 text-center"><span class="text-2xl">💰</span><div class="text-xs text-warm-600 mt-1">预算管理</div></div>
+          <div class="bg-white rounded-xl p-3 text-center"><span class="text-2xl">📤</span><div class="text-xs text-warm-600 mt-1">数据导出</div></div>
+          <div class="bg-white rounded-xl p-3 text-center"><span class="text-2xl">🏷️</span><div class="text-xs text-warm-600 mt-1">分类管理</div></div>
+        </div>
+      </div>
+
+      <!-- s1: 安装 -->
+      <div id="s1">
+        <h2 class="text-2xl font-black mb-4">第一步：安装APP</h2>
+
+        <h3 class="font-bold text-lg mb-3">方式一：通过电脑下载（推荐）</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div><strong>在电脑浏览器中打开网址：</strong><br><code class="bg-coral-50 px-2 py-0.5 rounded text-coral-300 text-xs">https://github.com/jizhualiuliubei/airecord-showcase/releases</code></div></div>
+          <div class="border-l-4 border-warm-400 bg-gray-50 rounded-r-xl p-3 text-xs text-warm-600">💡 如果您不会输入网址，可以让家人帮您打开，或用微信扫一扫功能扫描家人发来的链接。</div>
+          <div class="flex"><span class="step-num">2</span><div>找到页面上的「<strong>小猪鸭记账 v0.1.2</strong>」，点击下方的 <strong>app-release.apk</strong> 文件进行下载。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>下载完成后，把 APK 文件通过数据线、微信或蓝牙传到手机上。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>在手机中找到这个文件，点击它。</div></div>
+          <div class="flex"><span class="step-num">5</span><div>如果手机提示<strong>「禁止安装未知来源应用」</strong>，请操作：<br>① 点击弹窗中的「设置」<br>② 找到「允许来自此来源的应用」并打开<br>③ 返回安装页面，点击「安装」</div></div>
+          <div class="flex"><span class="step-num">6</span><div>等待安装完成，桌面出现 🐷🦆 图标。</div></div>
+        </div>
+
+        <h3 class="font-bold text-lg mt-4 mb-3">方式二：直接用手机下载</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>打开手机浏览器（如 Chrome、UC浏览器等）。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>在地址栏输入上面的网址。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>点击 app-release.apk 下载。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>下载完成后，在通知栏点击下载完成的文件。</div></div>
+          <div class="flex"><span class="step-num">5</span><div>按提示完成安装。</div></div>
+        </div>
+      </div>
+
+      <!-- s2: 首次打开 -->
+      <div id="s2">
+        <h2 class="text-2xl font-black mb-4">第二步：首次打开 — 认识APP首页</h2>
+        <p class="text-warm-600 mb-3">安装完成后，在手机桌面找到 🐷🦆 图标，点击打开。</p>
+
+        <h3 class="font-bold text-lg mb-2">首页界面介绍</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-2 text-sm">
+          <p>① <strong>顶部区域</strong> — 显示本月总支出、总收入、结余。红色数字是花掉的钱，绿色数字是赚到的钱。</p>
+          <p>② <strong>中间区域</strong> — 预算进度条，显示本月预算使用了多少。如预算1000元花了600元，显示60%。</p>
+          <p>③ <strong>下方区域</strong> — 最近几笔账单记录，按日期排列。</p>
+          <p>④ <strong>底部四个按钮</strong> — 最重要的操作区域：</p>
+          <div class="grid grid-cols-4 gap-2 text-center text-xs mt-2">
+            <div class="bg-coral-50 rounded-xl p-2">🏠<br><strong>首页</strong></div>
+            <div class="bg-coral-50 rounded-xl p-2">📋<br><strong>账单</strong></div>
+            <div class="bg-coral-50 rounded-xl p-2">📊<br><strong>统计</strong></div>
+            <div class="bg-coral-50 rounded-xl p-2">👤<br><strong>我的</strong></div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 mt-4 text-sm">
+          <strong>💰 界面颜色说明</strong>
+          <div class="mt-2 space-y-1">
+            <p><span class="inline-block w-3 h-3 rounded-full bg-red-400 mr-2"></span><strong>珊瑚粉色</strong> = 花出去的钱（支出）</p>
+            <p><span class="inline-block w-3 h-3 rounded-full bg-green-500 mr-2"></span><strong>绿色</strong> = 赚到的钱（收入）</p>
+          </div>
+          <p class="mt-2 font-bold">请记住：花钱是粉色，赚钱是绿色。</p>
+        </div>
+      </div>
+
+      <!-- s3: 手动记账 -->
+      <div id="s3">
+        <h2 class="text-2xl font-black mb-4">第三步：手动记账 — 最基本的记账方式</h2>
+        <p class="text-warm-600 mb-3">这是最基础的记账方法，就像按计算器一样简单。</p>
+
+        <h3 class="font-bold text-lg mb-2">记一笔支出</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>在首页，点击右下角的粉色 <strong>「+」加号按钮</strong>。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>您会看到一个大大的数字键盘，底部有很多分类图标。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>在数字键盘上<strong>输入花的金额</strong>。例如买菜花了35元，就按「3」「5」。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>点击底部的<strong>分类图标</strong>，选择这笔钱花在了哪里。比如买菜就点「餐饮」。</div></div>
+          <div class="border-l-4 border-warm-400 bg-gray-50 rounded-r-xl p-3 text-xs text-warm-600">💡 如果分类不对，可以左右滑动看到更多分类，一共16种。</div>
+          <div class="flex"><span class="step-num">5</span><div><span class="text-warm-400">（可选）</span> 点击日期区域，可以改成实际花钱的日期。</div></div>
+          <div class="flex"><span class="step-num">6</span><div><span class="text-warm-400">（可选）</span> 点击备注栏，可以写文字说明，比如「周末买菜」。</div></div>
+          <div class="flex"><span class="step-num">7</span><div>点击屏幕底部的 <strong>「✓ 记录」</strong>按钮。</div></div>
+          <div class="flex"><span class="step-num">8</span><div>屏幕上出现花瓣飘落动画，表示记账成功！🎉</div></div>
+        </div>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">记一笔收入</h3>
+        <p class="text-sm text-warm-600">操作方法和记支出一样，但在第2步之后需要<strong>先点击顶部的「收入」标签</strong>（默认是「支出」），然后再输入金额和选择分类。</p>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">修改或删除一条记录</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>点击底部「📋 账单」进入账单列表。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>找到要修改的记录，点击它进入详情页。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>可以修改金额、分类、日期、备注。改完自动保存。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>如果要删除，点击右上角的删除按钮。</div></div>
+        </div>
+      </div>
+
+      <!-- s4: AI记账 -->
+      <div id="s4">
+        <h2 class="text-2xl font-black mb-4">第四步：AI对话记账（推荐！）</h2>
+        <p class="text-warm-600 mb-3">这是本APP最方便的功能。您不需要选分类、不需要点按钮，直接在输入框里打字，AI会自动帮您理解并记账。</p>
+        <div class="border-l-4 border-coral-500 bg-coral-50 rounded-r-xl p-4 mb-4 text-sm">⚠️ 使用此功能需要联网，且需要先配置API密钥（见第十一步）。</div>
+
+        <h3 class="font-bold text-lg mb-2">用文字对话记账</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>在首页点击底部「👤 我的」，然后点击「<strong>AI 记账</strong>」。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>屏幕底部有一个输入框，在输入框中输入您花了什么钱。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>举例，您可以直接这样写：</div></div>
+          <div class="bg-coral-50 rounded-xl p-3 space-y-1 text-xs">
+            <p>输入「<strong>午饭花了35，坐地铁花了5块</strong>」→ AI识别：①餐饮35元 ②交通5元</p>
+            <p>输入「<strong>给孙子发红包200</strong>」→ AI识别：①人情200元</p>
+            <p>输入「<strong>今天发工资8000</strong>」→ AI识别：①工资收入8000元</p>
+          </div>
+          <div class="flex"><span class="step-num">4</span><div>AI识别后会弹出一张<strong>确认卡片</strong>，显示金额和分类。</div></div>
+          <div class="flex"><span class="step-num">5</span><div>检查无误后点击「<strong>确认</strong>」完成记账。</div></div>
+          <div class="flex"><span class="step-num">6</span><div>如果AI理解错了，可以说「<strong>不对，是交通</strong>」或「<strong>金额改成30</strong>」，AI会自动修正。</div></div>
+        </div>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">AI能理解的表达方式</h3>
+        <div class="bg-white rounded-2xl p-4 text-sm space-y-1">
+          <p>· 「刚刚买了杯奶茶18」→ <span class="text-coral-300">餐饮 18元</span></p>
+          <p>· 「前天去超市花了150」→ <span class="text-coral-300">购物 150元，日期是前天</span></p>
+          <p>· 「中午吃面12，晚上吃火锅168」→ <span class="text-coral-300">两笔餐饮</span></p>
+          <p>· 「交房租2500」→ <span class="text-coral-300">居住 2500元</span></p>
+        </div>
+        <div class="border-l-4 border-warm-400 bg-gray-50 rounded-r-xl p-3 mt-3 text-xs">💡 尽量写清楚花了多少钱，AI才能准确识别。只说"买了菜"没有金额，AI就识别不了了。</div>
+      </div>
+
+      <!-- s5: 语音 -->
+      <div id="s5">
+        <h2 class="text-2xl font-black mb-4">第五步：语音记账 — 说话就能记账</h2>
+        <p class="text-warm-600 mb-3">如果您觉得打字不方便，可以直接说话记账。</p>
+        <div class="border-l-4 border-coral-500 bg-coral-50 rounded-r-xl p-4 mb-4 text-sm">⚠️ 此功能需要联网、API密钥，且需允许APP使用麦克风权限。</div>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>进入AI记账页面（👤 我的 → AI 记账）。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>点击右下角的<strong>麦克风🎤图标</strong>。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>屏幕上出现声波动画，表示正在听您说话。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>对着手机清晰地说出消费内容，例如：「<strong>今天买菜花了50块</strong>」。</div></div>
+          <div class="border-l-4 border-warm-400 bg-gray-50 rounded-r-xl p-3 text-xs">💡 说话时尽量字正腔圆，环境安静一点效果更好。</div>
+          <div class="flex"><span class="step-num">5</span><div>说完后等待1-2秒，屏幕上显示识别的文字。</div></div>
+          <div class="flex"><span class="step-num">6</span><div>AI自动解析文字并弹出确认卡片。</div></div>
+          <div class="flex"><span class="step-num">7</span><div>核对确认后点击「确认」即可。</div></div>
+        </div>
+      </div>
+
+      <!-- s6: 拍照 -->
+      <div id="s6">
+        <h2 class="text-2xl font-black mb-4">第六步：拍照记账 — 拍购物小票自动识别</h2>
+        <p class="text-warm-600 mb-3">如果您有购物小票，可以直接拍照，APP会自动读取上面的文字并记账。</p>
+        <div class="border-l-4 border-coral-500 bg-coral-50 rounded-r-xl p-4 mb-4 text-sm">⚠️ 此功能需要联网、API密钥和相机权限。</div>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>进入AI记账页面。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>点击输入框左边的<strong>相机📷图标</strong>。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>首次使用会弹出相机权限提示，点击「允许」。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>对准购物小票或收据拍照。</div></div>
+          <div class="border-l-4 border-warm-400 bg-gray-50 rounded-r-xl p-3 text-xs">💡 尽量把小票拍清楚、拍正，光线好一点，识别更准确。</div>
+          <div class="flex"><span class="step-num">5</span><div>APP自动识别小票文字，AI提取金额和商家信息。</div></div>
+          <div class="flex"><span class="step-num">6</span><div>AI解析后弹出确认卡片，检查无误点击「确认」。</div></div>
+          <div class="border-l-4 border-coral-500 bg-coral-50 rounded-r-xl p-3 mt-3 text-xs">⚠️ 如果小票太皱或打印不清楚，可能识别不完整。建议保留平整的小票再拍照。</div>
+        </div>
+      </div>
+
+      <!-- s7: 账单 -->
+      <div id="s7">
+        <h2 class="text-2xl font-black mb-4">第七步：查看和管理账单</h2>
+
+        <h3 class="font-bold text-lg mb-2">查看所有账单</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>点击底部「📋 账单」，进入账单列表。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>账单按日期分组排列，最新的在最上面。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>每笔账单显示：分类图标、金额、备注、时间。</div></div>
+        </div>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">搜索账单</h3>
+        <p class="text-sm text-warm-600">在账单列表顶部有搜索框，输入关键词（如「超市」）就能找到相关账单。</p>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">筛选账单</h3>
+        <p class="text-sm text-warm-600">点击搜索框旁的漏斗图标，可按分类、类型、金额范围、日期范围筛选。</p>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">删除账单</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>在账单列表中找到要删除的记录。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>手指按住向左滑动。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>出现红色「删除」按钮，点击即可。</div></div>
+        </div>
+      </div>
+
+      <!-- s8: 统计 -->
+      <div id="s8">
+        <h2 class="text-2xl font-black mb-4">第八步：统计分析 — 看看钱都花哪了</h2>
+
+        <h3 class="font-bold text-lg mb-2">查看消费趋势</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>点击底部「📊 统计」，进入统计分析页面。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>顶部有四个时间选项：「<strong>日</strong>」「<strong>周</strong>」「<strong>月</strong>」「<strong>年</strong>」。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>点击「月」，可以看到本月每天的支出和收入折线图。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>红色线条代表支出，绿色线条代表收入。</div></div>
+          <div class="flex"><span class="step-num">5</span><div>手指在图表上滑动可查看不同日期，点击数据点弹出金额详情。</div></div>
+        </div>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">查看分类排行榜</h3>
+        <p class="text-sm text-warm-600 mb-2">在统计页面往下滑动，查看「分类排行榜」—— 按花钱多少排列所有分类。</p>
+        <div class="bg-white rounded-2xl p-4 space-y-1 text-sm">
+          <p>🥇 <strong>餐饮</strong> — ¥2,350</p>
+          <p>🥈 <strong>购物</strong> — ¥1,200</p>
+          <p>🥉 <strong>交通</strong> — ¥350</p>
+        </div>
+      </div>
+
+      <!-- s9: 预算 -->
+      <div id="s9">
+        <h2 class="text-2xl font-black mb-4">第九步：预算管理 — 控制每月开销</h2>
+        <p class="text-warm-600 mb-3">设定预算后，APP会帮您监控每月开销，快超支时会提醒您。</p>
+
+        <h3 class="font-bold text-lg mb-2">设置月度总预算</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>点击底部「👤 我的」→「<strong>预算管理</strong>」。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>在输入框中输入您每月的预算金额，比如 <strong>3000</strong> 元，然后点击「<strong>设置预算</strong>」。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>回到首页，看到预算进度条。绿色=还有余，红色=接近超支。</div></div>
+        </div>
+        <div class="border-l-4 border-warm-400 bg-gray-50 rounded-r-xl p-3 mt-3 text-xs">💡 建议每月月初根据开销情况调整预算金额。</div>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">修改预算</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>在预算管理页面，点击预算进度卡片下方的「<strong>编辑</strong>」按钮。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>输入框会显示当前预算金额，直接修改即可。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>点击「<strong>保存修改</strong>」完成更新。</div></div>
+        </div>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">删除预算</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>在预算管理页面，点击预算进度卡片下方的「<strong>删除</strong>」按钮。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>预算数据立即被清除，首页不再显示预算进度条。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>如需重新设置，输入新金额后点击「设置预算」即可。</div></div>
+        </div>
+      </div>
+
+      <!-- s10: 数据管理 -->
+      <div id="s10">
+        <h2 class="text-2xl font-black mb-4">第十步：数据管理 — 备份和恢复</h2>
+        <div class="border-l-4 border-coral-500 bg-coral-50 rounded-r-xl p-4 mb-4 text-sm">⚠️ 强烈建议定期备份数据！如果换手机或误删了APP，有备份文件就能恢复。</div>
+
+        <h3 class="font-bold text-lg mb-2">导出账单（备份）</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>点击「👤 我的」→「<strong>数据管理</strong>」。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>在「导出数据」区域，点击「<strong>导出 CSV</strong>」。</div></div>
+          <div class="border-l-4 border-warm-400 bg-gray-50 rounded-r-xl p-3 text-xs">💡 CSV 格式可以用 Excel 打开查看，是比较通用的表格格式。</div>
+          <div class="flex"><span class="step-num">3</span><div>导出成功后，点击「<strong>分享文件</strong>」。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>选择微信或邮件发送给自己或家人保存。</div></div>
+        </div>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">导入账单（恢复）</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>在「数据管理」页面，点击「<strong>导入账单</strong>」。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>选择之前备份的 CSV 或 JSON 文件。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>APP自动识别文件内容并导入。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>导入成功后，账单列表中就能看到之前的数据了。</div></div>
+        </div>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">清除所有数据</h3>
+        <div class="border-l-4 border-coral-500 bg-coral-50 rounded-r-xl p-3 mb-3 text-xs">⚠️ 这个操作会删除APP中所有账单，不可恢复！请务必先导出备份！</div>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>在「数据管理」页面，往下滑动到「<strong>危险操作</strong>」区域。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>点击「<strong>清除所有数据</strong>」按钮。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>系统弹出确认框，点击「<strong>我确定</strong>」。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>系统再次确认，点击「<strong>确认清除</strong>」。</div></div>
+          <div class="flex"><span class="step-num">5</span><div>所有数据被清除，APP恢复到初始状态。</div></div>
+        </div>
+      </div>
+
+      <!-- s11: API密钥 -->
+      <div id="s11">
+        <h2 class="text-2xl font-black mb-4">第十一步：配置AI密钥（使用AI功能必须）</h2>
+        <p class="text-warm-600 mb-3">AI记账、语音记账、拍照记账、AI月报需要用到DeepSeek公司的AI服务。先免费获取一个密钥。</p>
+
+        <h3 class="font-bold text-lg mb-2">注册并获取密钥</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>打开浏览器，访问 <code class="bg-coral-50 px-2 py-0.5 rounded text-coral-300">https://platform.deepseek.com</code></div></div>
+          <div class="flex"><span class="step-num">2</span><div>点击「<strong>注册</strong>」，用手机号或邮箱注册。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>登录后进入控制台。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>点击左侧菜单的「<strong>API Keys</strong>」。</div></div>
+          <div class="flex"><span class="step-num">5</span><div>点击「创建新的 API Key」，起名「记账APP」。</div></div>
+          <div class="flex"><span class="step-num">6</span><div>复制生成的密钥（以 <strong>sk-</strong> 开头）。</div></div>
+          <div class="border-l-4 border-coral-500 bg-coral-50 rounded-r-xl p-3 text-xs">⚠️ 密钥只显示一次，请务必复制保存好！丢失需要重新创建。</div>
+        </div>
+
+        <h3 class="font-bold text-lg mt-4 mb-2">在APP中填入密钥</h3>
+        <div class="bg-white rounded-2xl p-5 space-y-3 text-sm">
+          <div class="flex"><span class="step-num">1</span><div>打开小猪鸭记账APP。</div></div>
+          <div class="flex"><span class="step-num">2</span><div>点击「👤 我的」→「<strong>API 设置</strong>」。</div></div>
+          <div class="flex"><span class="step-num">3</span><div>在输入框中粘贴（长按→粘贴）密钥。</div></div>
+          <div class="flex"><span class="step-num">4</span><div>点击「<strong>测试连接</strong>」确认密钥有效。</div></div>
+          <div class="flex"><span class="step-num">5</span><div>显示「连接成功」即完成设置！</div></div>
+        </div>
+
+        <div class="bg-coral-50 rounded-2xl p-4 mt-4 text-sm">
+          <strong>💰 费用说明</strong>
+          <p class="mt-1">DeepSeek对新用户赠送免费额度（约10元），个人使用能用好几个月。每笔记账花费约几分钱，非常便宜。</p>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div id="faq">
+        <h2 class="text-2xl font-black mb-4">❓ 常见问题解答（FAQ）</h2>
+        <div class="space-y-3">
+          <details class="bg-white rounded-2xl p-4">
+            <summary class="font-bold cursor-pointer text-sm">APP需要联网吗？</summary>
+            <p class="text-sm text-warm-600 mt-2">手动记账、查看账单、统计、预算等基本功能不需要。只有AI功能需要联网。</p>
+          </details>
+          <details class="bg-white rounded-2xl p-4">
+            <summary class="font-bold cursor-pointer text-sm">换手机了数据怎么迁移？</summary>
+            <p class="text-sm text-warm-600 mt-2">在旧手机导出备份文件（CSV/JSON），微信发给新手机，在新手机导入。</p>
+          </details>
+          <details class="bg-white rounded-2xl p-4">
+            <summary class="font-bold cursor-pointer text-sm">AI识别不准确怎么办？</summary>
+            <p class="text-sm text-warm-600 mt-2">直接说「不对，是XX」，AI会自动修正。也可在确认卡片上手动修改。</p>
+          </details>
+          <details class="bg-white rounded-2xl p-4">
+            <summary class="font-bold cursor-pointer text-sm">不小心删除了账单能恢复吗？</summary>
+            <p class="text-sm text-warm-600 mt-2">有备份可导入恢复。没有备份则无法恢复。请一定养成定期备份的习惯！</p>
+          </details>
+          <details class="bg-white rounded-2xl p-4">
+            <summary class="font-bold cursor-pointer text-sm">怎么给分类换颜色或改名字？</summary>
+            <p class="text-sm text-warm-600 mt-2">「👤 我的」→「分类管理」，可新增、修改、删除分类，自定义颜色。</p>
+          </details>
+          <details class="bg-white rounded-2xl p-4">
+            <summary class="font-bold cursor-pointer text-sm">安装时提示有风险怎么办？</summary>
+            <p class="text-sm text-warm-600 mt-2">这是手机正常安全提示，因APP未上架应用商店。可放心安装，不收集个人信息。</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div id="contact">
+        <h2 class="text-2xl font-black mb-4">📬 联系与支持</h2>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <a href="https://github.com/jizhualiuliubei/airecord-showcase" target="_blank" class="bg-white rounded-2xl p-5 hover:shadow-lg transition flex items-center gap-4">
+            <span class="text-3xl">📂</span>
+            <div><h3 class="font-bold">GitHub 仓库</h3><p class="text-xs text-warm-600">查看文档、下载最新版</p></div>
+          </a>
+          <a href="https://jizhualiuliubei.github.io/airecord-showcase/" target="_blank" class="bg-white rounded-2xl p-5 hover:shadow-lg transition flex items-center gap-4">
+            <span class="text-3xl">🌐</span>
+            <div><h3 class="font-bold">在线帮助</h3><p class="text-xs text-warm-600">浏览器中查看截图说明</p></div>
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5">
+          <h3 class="font-bold mb-3">🐷🦆 使用小贴士</h3>
+          <div class="space-y-2 text-sm text-warm-600">
+            <p>1. 每天睡前花2分钟记录一天的消费，养成习惯就不容易遗忘。</p>
+            <p>2. 周末打开统计页面，看看一周的花费分布，有助于控制开销。</p>
+            <p>3. 建议每月导出一次数据做备份，防止意外丢失。</p>
+            <p>4. 有WiFi时优先使用AI记账，又快又准确。</p>
+            <p>5. 记收入时别忘了选「收入」类型（绿色），这样才能正确统计结余。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="text-center py-10 text-sm text-warm-400">
+  <p>🐷🦆 小猪鸭记账 — 作品展示</p>
+</footer>
+
+</body>
+</html>
